@@ -7,7 +7,7 @@ const fs = require("fs");
 const { createServer } = require("http");
 
 const app = express();
-const PORT = process.env.PORT || 8080; // Use Railway’s assigned port
+const DOC_PORT = process.env.DOC_PORT || 8080; // Use Railway’s assigned DOC_PORT
 // http://localhost:8080/
 
 const UPLOAD_FOLDER = "uploads";
@@ -73,6 +73,6 @@ app.post("/convert", upload.single("file"), (req, res) => {
 
 
 // Start the server
-app.listen(PORT, '0.0.0.0', () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(DOC_PORT, '0.0.0.0', () => console.log(`Server running on http://localhost:${DOC_PORT}`));
 
 // C:\Program Files\Docker\Docker\resources\bin

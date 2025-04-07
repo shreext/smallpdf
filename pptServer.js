@@ -5,7 +5,7 @@ const { exec } = require("child_process");
 const fs = require("fs");
 
 const app = express();
-const PORT = process.env.PORT || 9090;
+const PPT_PORT = process.env.PPT_PORT || 9090;
 // http://localhost:9090/
 
 const UPLOAD_FOLDER = "uploads";
@@ -69,4 +69,4 @@ app.post("/convert", upload.single("ppt"), (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, '0.0.0.0', () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PPT_PORT, '0.0.0.0', () => console.log(`Server running on http://localhost:${PPT_PORT}`));

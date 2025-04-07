@@ -5,7 +5,7 @@ const { exec } = require("child_process");
 const fs = require("fs");
 
 const app = express();
-const PORT = process.env.PORT || 9000;
+const EXCEL_PORT = process.env.EXCEL_PORT || 9000;
 // http://localhost:9000/
 
 const UPLOAD_FOLDER = "uploads";
@@ -70,4 +70,4 @@ app.post("/convert", upload.single("excel"), (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, '0.0.0.0', () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(EXCEL_PORT, '0.0.0.0', () => console.log(`Server running on http://localhost:${EXCEL_PORT}`));
