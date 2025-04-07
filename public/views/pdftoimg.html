@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PDF to Image - PDF Tools</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/pdftoimgStyle.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="i-love">CONVERT</span>
+                    <span class="heart">2</span>
+                    <span class="pdf">PDF</span>
+                </div>
+                <div class="nav-links">
+                    <a href="/" target="_blank">Home</a>
+                    <!-- <a href="#" class="active">Tools</a> -->
+                    <a href="/views/privacy-policy.html" target="_blank">Privacy Policy</a>
+                    <a href="/views/terms.html" target="_blank">Terms & Condition</a>
+                    <a href="/views/disclaimer.html" target="_blank">Disclaimer</a>
+                </div>
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Every tool you need to use PDFs, at your fingertips</h1>
+        <p class="subtitle">Convert your PDF files to high-quality images with just a few clicks.</p>
+
+        <div class="tools-grid">
+            <div class="tool-card">
+                <h3>PDF to Images</h3>
+                <p>Convert each page of your PDF into separate image files.</p>
+                
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="file" class="file-input" accept="application/pdf" hidden/>
+                    <button id="addButton">Select PDF file</button>
+                </div>
+
+                <button id="convertButton" disabled>Convert to Images</button>
+                <div class="progress" id="progress"></div>
+                <div class="image-container" id="imageContainer"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script src="/js/pdfToImgScript.js"></script>
+</body>
+</html>

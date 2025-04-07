@@ -1,0 +1,483 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --card-hover-bg: #f8f9fa;
+    --primary-color: #e32437;
+    --secondary-color: #4CAF50;
+    --text-color: #333;
+    --light-gray: #f5f5f5;
+    --border-color: #e0e0e0;
+    --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    font-family: var(--font-secondary);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .logo {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.logo {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tool-card {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    background-color: var(--card-hover-bg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.tool-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.tool-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: hue-rotate(var(--hue-rotate, 0deg)); /* For different colors per tool */
+}
+
+/* Tool-specific colors using hue-rotate */
+.tool-card:nth-child(1) .tool-img { --hue-rotate: 0deg; }     /* Red - Merge */
+.tool-card:nth-child(2) .tool-img { --hue-rotate: 45deg; }    /* Orange - Split */
+.tool-card:nth-child(3) .tool-img { --hue-rotate: 90deg; }    /* Green - PDF to IMG */
+.tool-card:nth-child(4) .tool-img { --hue-rotate: 135deg; }   /* Teal - IMG to PDF */
+.tool-card:nth-child(5) .tool-img { --hue-rotate: 180deg; }   /* Blue - Rotate */
+.tool-card:nth-child(6) .tool-img { --hue-rotate: 225deg; }   /* Purple - DOC to PDF */
+.tool-card:nth-child(7) .tool-img { --hue-rotate: 270deg; }   /* Magenta - Excel to PDF */
+.tool-card:nth-child(8) .tool-img { --hue-rotate: 315deg; }   /* Pink - PPT to PDF */
+
+/* Remove previous icon-specific colors */
+.merge-icon img,
+.split-icon img,
+.compress-icon img,
+.word-icon img,
+.excel-icon img,
+.rotate-icon img {
+    color: unset;
+}
+
+/* Enhanced hover effect */
+.tool-card:hover .tool-img {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.tool-card h3 {
+    margin: 0 0 1rem 0;
+    color: #333;
+    font-size: 1.25rem;
+}
+
+.tool-card p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.nav-links {
+    font-family: var(--font-primary);
+    font-weight: 500;
+}
+
+.nav-links a {
+    font-size: 0.95rem;
+    letter-spacing: 0.2px;
+}
+
+button {
+    font-family: var(--font-primary);
+    font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        padding: 1rem;
+    }
+
+    .tool-card {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+        padding: 0 1rem;
+    }
+
+    .subtitle {
+        padding: 0 1rem;
+    }
+
+    body {
+        font-size: 0.95rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    .logo {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .nav-links a {
+        margin: 5px 0;
+        padding: 8px;
+        width: 100%;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .subtitle {
+        font-size: 16px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tool-card {
+        margin: 10px 0;
+    }
+}
+
+/* Enhanced responsive design */
+/* TV and Large Displays (1920px and above) */
+@media screen and (min-width: 1920px) {
+    .tools-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1800px;
+        gap: 3rem;
+    }
+
+    .tool-card {
+        padding: 3rem;
+    }
+
+    .tool-icon {
+        width: 120px;
+        height: 120px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .tool-card h3 {
+        font-size: 1.75rem;
+    }
+
+    .tool-card p {
+        font-size: 1.1rem;
+    }
+}
+
+/* Laptops and Desktops (1366px to 1919px) */
+@media screen and (min-width: 1366px) and (max-width: 1919px) {
+    .tools-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+    }
+}
+
+/* Tablets and Small Laptops (768px to 1365px) */
+@media screen and (min-width: 768px) and (max-width: 1365px) {
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 900px;
+        padding: 1.5rem;
+    }
+}
+
+/* Large Mobile Devices (481px to 767px) */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    .tools-grid {
+        grid-template-columns: repeat(1, 1fr);
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    .tool-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+/* Small Mobile Devices (480px and below) */
+@media screen and (max-width: 480px) {
+    .tools-grid {
+        grid-template-columns: 1fr;
+        padding: 0.8rem;
+    }
+
+    .tool-card {
+        padding: 1.2rem;
+    }
+
+    .tool-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .tool-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .tool-card p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Print Media Query */
+@media print {
+    .tools-grid {
+        display: block;
+    }
+
+    .tool-card {
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+        box-shadow: none;
+    }
+}
+
+/* Navbar Styles */
+nav {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.i-love { color: #2196F3; }
+.heart { color: #F44336; margin: 0 0.2rem; }
+.pdf { color: #4CAF50; }
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #2196F3;
+}
+
+.nav-links a.active {
+    color: #2196F3;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    /* Hamburger animation */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 768px) {
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+        padding: 0 1rem;
+        text-align: center;
+    }
+
+    .subtitle {
+        padding: 0 1rem;
+        text-align: center;
+    }
+
+    .tool-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .tool-icon {
+        width: 60px;
+        height: 60px;
+    }
+}

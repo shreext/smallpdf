@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PDF Tools - Convert, Merge, Split PDF</title>
+    <link rel="stylesheet" href="/css/mergeStyle.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="i-love">CONVERT</span>
+                    <span class="heart">2</span>
+                    <span class="pdf">PDF</span>
+                </div>
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="nav-links">
+                <a href="/" target="_blank" class="active" >Home</a>
+                <!-- <a href="#">Tools</a> -->
+                <a href="/views/privacy-policy.html" target="_blank">Privacy</a>
+                <a href="/views/terms.html" target="_blank">Terms & Condition</a>
+                <a href="/views/disclaimer.html" target="_blank">Disclaimer</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Every tool you need to use PDFs, at your fingertips</h1>
+        <p class="subtitle">All are 100% FREE and easy to use! Merge, split, compress, convert, rotate, unlock and
+            watermark PDFs with just a few clicks.</p>
+
+        <div class="tools-grid">
+            <a href="/views/merge.html" class="tool-card">
+                <div class="tool-icon">
+                    <img src="/images/icon.png" alt="Merge PDF" class="tool-img">
+                </div>
+                <h3>Merge PDF</h3>
+                <p>Combine PDFs in the order you want with the easiest PDF merger available.</p>
+            </a>
+
+            <a href="/views/split.html" class="tool-card">
+                <div class="tool-icon">
+                    <img src="/images/icon.png" alt="Split PDF" class="tool-img">
+                </div>
+                <h3>Split PDF</h3>
+                <p>Separate one page or a whole set for easy conversion into independent PDF files.</p>
+            </a>
+
+            <!-- <a href="/views/compress.html" class="tool-card">
+                <div class="tool-icon">
+                    <img src="/images/icon.png" alt="Compress PDF" class="tool-img">
+                </div>
+                <h3>Compress PDF</h3>
+                <p>Reduce file size while optimizing for maximal PDF quality.</p>
+            </a> -->
+
+            <a href="/views/pdftoimg.html" class="tool-card">
+                <div class="tool-icon">
+                    <img src="/images/icon.png" alt="PDF to IMG" class="tool-img">
+                </div>
+                <h3>PDF to IMG</h3>
+                <p>Convert your PDF files into easy to edit images.</p>
+            </a>
+
+            <a href="/views/imgtopdf.html" class="tool-card">
+                <div class="tool-icon">
+                    <img src="/images/icon.png" alt="IMG to PDF" class="tool-img">
+                </div>
+                <h3>IMG to PDF</h3>
+                <p>Convert your images files into PDF files.</p>
+            </a>
+
+            <a href="/views/rotate.html" class="tool-card">
+                <div class="tool-icon">
+                    <img src="/images/icon.png" alt="Rotate PDF" class="tool-img">
+                </div>
+                <h3>Rotate PDF</h3>
+                <p>Rotate and save your PDF pages online for free.</p>
+            </a>
+
+            <a class="tool-card" id="docOpens">
+                <div class="tool-icon">
+                    <img src="/images/icon.png" alt="DOC to PDF" class="tool-img">
+                </div>
+                <h3>DOC to PDF</h3>
+                <p>Convert Word documents to PDF files quickly and easily.</p>
+            </a>
+
+            <a class="tool-card" id="excelOpens">
+                <div class="tool-icon">
+                    <img src="/images/icon.png" alt="Excel to PDF" class="tool-img">
+                </div>
+                <h3>Excel to PDF</h3>
+                <p>Transform Excel spreadsheets into professional PDF documents.</p>
+            </a>
+
+            <a class="tool-card" id="pptOpens">
+                <div class="tool-icon">
+                    <img src="/images/icon.png" alt="PPT to PDF" class="tool-img">
+                </div>
+                <h3>PPT to PDF</h3>
+                <p>Convert PowerPoint presentations to PDF format seamlessly.</p>
+            </a>
+        </div>
+    </main>
+
+    <script>
+        const docOpen = document.getElementById("docOpens");
+        const excelOpen = document.getElementById("excelOpens");
+        const pptOpen = document.getElementById("pptOpens");
+
+        document.querySelectorAll('.tool-card').forEach(card => {
+            card.addEventListener('click', function () {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-5px)';
+                }, 100);
+            });
+        });
+
+        docOpen.addEventListener('click', ()=>{
+            fetch('start-doc',{
+                method: 'POST'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // alert(data.message);
+                    window.open('http://localhost:8080/', '_blank');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+        });
+        excelOpen.addEventListener('click', ()=>{
+            fetch('start-excel',{
+                method: 'POST'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // alert(data.message);
+                    window.open('http://localhost:9000/', '_blank');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+        });
+        pptOpen.addEventListener('click', ()=>{
+            fetch('start-ppt',{
+                method: 'POST'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // alert(data.message);
+                    window.open('http://localhost:9090/', '_blank');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+        });
+        
+       
+
+        function addTouchSupport(element) {
+            element.addEventListener('touchstart', function (e) {
+                e.preventDefault();
+            });
+
+            element.addEventListener('touchmove', function (e) {
+                e.preventDefault();
+            });
+
+            element.addEventListener('touchend', function (e) {
+                e.preventDefault();
+            });
+        }
+
+        document.querySelectorAll('.interactive-element').forEach(addTouchSupport);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    }
+                });
+
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

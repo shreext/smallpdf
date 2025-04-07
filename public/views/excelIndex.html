@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XLSX to PDF Converter</title>
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/excelStyle.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="i-love">CONVERT</span>
+                    <span class="heart">2</span>
+                    <span class="pdf">PDF</span>
+                </div>
+                <div class="nav-links">
+                    <a href="/" target="_blank">Home</a>
+                    <!-- <a href="#" class="active">Tools</a> -->
+                    <a href="/views/privacy-policy.html" target="_blank">Privacy Policy</a>
+                    <a href="/views/terms.html" target="_blank">Terms & Condition</a>
+                    <a href="/views/disclaimer.html" target="_blank">Disclaimer</a>
+                </div>
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+        <h1>Convert XLSX to PDF</h1>
+        <p class="subtitle">Convert your Excel files to PDF format with just a few clicks. Fast, easy, and free!</p>
+
+        <div class="tool-card">
+            <h3>XLSX to PDF Converter</h3>
+            <p>Upload your XLSX file and we'll convert it to a high-quality PDF document.</p>
+            <form id="convertForm" action="/convert" method="post" enctype="multipart/form-data">
+                <div class="upload-area">
+                    <input type="file" name="excel" id="fileInput" class="file-input" accept=".xls,.xlsx" required>
+                    <button type="button" id="uploadButton">Select XLSX file</button>
+                </div>
+                <div id="fileName" style="margin-top: 1rem;"></div>
+                <button type="submit" id="convertButton" style="display: none; margin-top: 1rem; background: var(--primary-color); color: white; padding: 1rem 2rem; border: none; border-radius: 4px; cursor: pointer; font-weight: 500;">
+                    Convert to PDF
+                </button>
+            </form>
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">Converting...</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadButton = document.getElementById('uploadButton');
+            const fileInput = document.getElementById('fileInput');
+            const fileName = document.getElementById('fileName');
+            const convertButton = document.getElementById('convertButton');
+            const convertForm = document.getElementById('convertForm');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+  
+          
+            // Hamburger menu functionality
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+            uploadButton.addEventListener('click', () => {
+                fileInput.click();
+            });
+
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files.length > 0) {
+                    fileName.textContent = `Selected file: ${fileInput.files[0].name}`;
+                    convertButton.style.display = 'inline-block';
+                } else {
+                    fileName.textContent = '';
+                    convertButton.style.display = 'none';
+                }
+            });
+
+            convertForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(convertForm);
+                progressContainer.style.display = 'block';
+                convertButton.style.display = 'none';
+                uploadButton.disabled = true;
+
+                fetch('/convert', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Conversion failed');
+                    return response.blob();
+                })
+                .then(blob => {
+                    progressFill.style.width = '100%';
+                    progressText.textContent = 'Conversion complete!';
+                    
+                    // Create download link
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = fileInput.files[0].name.replace(/\.(xlsx|xls)$/, '.pdf');
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+
+                    // Reset form after short delay
+                    setTimeout(() => {
+                        progressContainer.style.display = 'none';
+                        progressFill.style.width = '0%';
+                        convertButton.style.display = 'none';
+                        uploadButton.disabled = false;
+                        fileName.textContent = '';
+                        convertForm.reset();
+                    }, 3000);
+                })
+                .catch(error => {
+                    progressText.textContent = 'Error: Conversion failed';
+                    progressFill.style.backgroundColor = 'var(--primary-color)';
+                    uploadButton.disabled = false;
+                });
+
+                // Simulate progress until we get the response
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 15;
+                    if (progress > 90) {
+                        clearInterval(interval);
+                        return;
+                    }
+                    progressFill.style.width = `${progress}%`;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

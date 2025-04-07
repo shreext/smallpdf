@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Rotate PDF - PDF Tools</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/rotateStyle.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="i-love">CONVERT</span>
+                    <span class="heart">2</span>
+                    <span class="pdf">PDF</span>
+                </div>
+                <div class="nav-links">
+                    <a href="/" target="_blank">Home</a>
+                    <!-- <a href="#" class="active">Tools</a> -->
+                    <a href="/views/privacy-policy.html" target="_blank">Privacy Policy</a>
+                    <a href="/views/terms.html" target="_blank">Terms & Condition</a>
+                    <a href="/views/disclaimer.html" target="_blank">Disclaimer</a>
+                </div>
+                <button class="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Every tool you need to use PDFs, at your fingertips</h1>
+        <p class="subtitle">Rotate PDF pages to any angle with just a few clicks.</p>
+
+        <div class="tools-grid">
+            <div class="tool-card">
+                <h3>Rotate PDF</h3>
+                <p>Select a PDF file and rotate its pages to any angle. Perfect for fixing scanned documents.</p>
+                
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="fileInput" class="file-input" accept="application/pdf" hidden/>
+                    <button id="addButton">Select PDF File</button>
+                </div>
+
+                <div class="pages-container" id="pagesContainer">
+                    <div class="rotation-controls">
+                        <button id="rotateLeft" class="rotate-btn" title="Rotate Left" disabled>
+                            <span class="rotate-icon">↺</span>
+                        </button>
+                        <button id="rotateRight" class="rotate-btn" title="Rotate Right" disabled>
+                            <span class="rotate-icon">↻</span>
+                        </button>
+                    </div>
+                    <div class="page-grid" id="pageGrid"></div>
+                </div>
+
+                <button id="saveButton" class="save-btn" disabled>Save Rotated PDF</button>
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="/js/rotateScript.js"></script>
+</body>
+</html>
