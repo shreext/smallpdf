@@ -2,9 +2,6 @@ FROM ubuntu:22.04
 # Install LibreOffice
 RUN apt-get update && apt-get install -y libreoffice curl gnupg
 
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
-    sudo apt-get install -y nodejs
-
 # Set working directory
 WORKDIR /app
 
