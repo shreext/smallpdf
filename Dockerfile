@@ -1,6 +1,7 @@
-FROM ubuntu:22.04
+FROM node:16
+
 # Install LibreOffice
-RUN apt-get update && apt-get install -y libreoffice curl gnupg
+RUN apt-get update && apt-get install -y libreoffice
 
 # Set working directory
 WORKDIR /app
