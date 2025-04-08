@@ -43,7 +43,7 @@
         <div class="tool-card">
             <h3>DOCX to PDF Converter</h3>
             <p>Upload your DOCX file and we'll convert it to a high-quality PDF document.</p>
-            <form id="convertForm" action="/convert" method="post" enctype="multipart/form-data">
+            <form id="convertForm" action="/docConvert" method="post" enctype="multipart/form-data">
                 <div class="upload-area">
                     <input type="file" name="file" id="fileInput" class="file-input" accept=".docx,.doc" required>
                     <button type="button" id="uploadButton">Select DOCX file</button>
@@ -113,7 +113,7 @@
                 convertButton.style.display = 'none';
                 uploadButton.disabled = true;
 
-                fetch('/convert', {
+                fetch('/docConvert', {
                     method: 'POST',
                     body: formData
                 })

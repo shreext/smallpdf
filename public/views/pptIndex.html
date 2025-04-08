@@ -40,7 +40,7 @@
         <div class="tool-card">
             <h3>PPT to PDF Converter</h3>
             <p>Upload your PPT file and we'll convert it to a high-quality PDF document.</p>
-            <form id="convertForm" action="/convert" method="post" enctype="multipart/form-data">
+            <form id="convertForm" action="/pptConvert" method="post" enctype="multipart/form-data">
                 <div class="upload-area">
                     <input type="file" name="ppt" id="fileInput" class="file-input" accept=".ppt,.pptx" required>
                     <button type="button" id="uploadButton">Select PPT file</button>
@@ -107,7 +107,7 @@
                 convertButton.style.display = 'none';
                 uploadButton.disabled = true;
 
-                fetch('/convert', {
+                fetch('/pptConvert', {
                     method: 'POST',
                     body: formData
                 })

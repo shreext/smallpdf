@@ -41,7 +41,7 @@
         <div class="tool-card">
             <h3>XLSX to PDF Converter</h3>
             <p>Upload your XLSX file and we'll convert it to a high-quality PDF document.</p>
-            <form id="convertForm" action="/convert" method="post" enctype="multipart/form-data">
+            <form id="convertForm" action="/excelConvert" method="post" enctype="multipart/form-data">
                 <div class="upload-area">
                     <input type="file" name="excel" id="fileInput" class="file-input" accept=".xls,.xlsx" required>
                     <button type="button" id="uploadButton">Select XLSX file</button>
@@ -109,7 +109,7 @@
                 convertButton.style.display = 'none';
                 uploadButton.disabled = true;
 
-                fetch('/convert', {
+                fetch('/excelConvert', {
                     method: 'POST',
                     body: formData
                 })
